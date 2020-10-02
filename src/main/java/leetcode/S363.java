@@ -3,7 +3,7 @@ package main.java.leetcode;
 import java.util.*;
 
 public class S363 {
-    public static int maxSumSubmatrix(int[][] matrix, int k) {
+    public int maxSumSubmatrix(int[][] matrix, int k) {
         int nRow = matrix.length;
         int nCol = matrix[0].length;
         int res = Integer.MIN_VALUE;
@@ -23,8 +23,9 @@ public class S363 {
     }
 
     //对一维数据，求子区间不超过 K 的最大数值和
-    public static int dpmax(int[] a, int k) {
+    public int dpmax(int[] a, int k) {
         LinkedList<Integer> list = new LinkedList<>();
+        list.add(0);
         int maxSum = Integer.MIN_VALUE;
         int s = 0;
         for (int i = 0; i < a.length; i++) {
@@ -35,13 +36,13 @@ public class S363 {
             //更新masSum
             if (j >= 0 && j < list.size()) {
                 maxSum = Math.max(maxSum, s - list.get(j));
+                if (maxSum == k) return maxSum;
             }
 
             //插入s[i]
             bisectLeft(list, s, 0, list.size() - 1, true);
         }
         return maxSum;
-
 
     }
 
@@ -79,6 +80,7 @@ public class S363 {
 
         return res;
     }
+
 
     public static void main(String args[]) {
         LinkedList<Integer> list = new LinkedList<Integer>() {
