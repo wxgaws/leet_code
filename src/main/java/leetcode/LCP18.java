@@ -5,8 +5,8 @@ import java.util.*;
 class LCP18 {
     public int breakfastNumber(int[] staple, int[] drinks, int x) {
         int count = 0;
-        List<Integer[]> sList = sort(staple, x);
-        List<Integer[]> dList = sort(drinks, x);
+        List<Integer[]> sList = sort(staple, x, false);
+        List<Integer[]> dList = sort(drinks, x, true);
 
         //i升序遍历sList，j降序遍历dList
         int j = dList.size() - 1;
@@ -22,7 +22,7 @@ class LCP18 {
                 int dN = dList.get(j)[1];
                 count += sN * dN;
             }
-
+            // System.out.printf("sCost=%d, sCost=%d, count=%d\n",sCost,dList.get(j)[0], count );
         }
 
         count = count % 1000000007;
@@ -30,7 +30,7 @@ class LCP18 {
     }
 
     //返回升序List(price,n)，价格不超过price的商品选法数
-    public List<Integer[]> sort(int arr[], int cost) {
+    public List<Integer[]> sort(int arr[], int cost, Boolean isSum) {
         TreeMap<Integer, Integer> map = new TreeMap();
         List<Integer[]> list = new ArrayList();
         for (int price : arr) {
@@ -41,9 +41,19 @@ class LCP18 {
         }
         int sum = 0;//价格不超过price的个数和
         for (int key : map.keySet()) {
-            sum += map.get(key);
-            list.add(new Integer[]{key, sum});
+            int n = map.get(key);
+            if (isSum) {
+                sum += n;
+                list.add(new Integer[]{key, sum});
+            } else {
+                list.add(new Integer[]{key, n});
+            }
+
         }
+        System.out.println("sort:");
+        // for(Integer[] a:list){
+        //     System.out.println(a[0]+","+a[1]);
+        // }
         return list;
     }
 }
