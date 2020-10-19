@@ -8,13 +8,13 @@ class LCP18_2 {
         Arrays.sort(drinks);
         int count = 0;
         int i = 0, j = drinks.length - 1;
-        while (i < staple.length) {
-            while (j >= 0 && staple[i] + drinks[j] > x) {
+        while (i < staple.length && j >= 0) {
+            if (staple[i] + drinks[j] <= x) {
+                count = (count + j + 1) % 1000000007;
+                i++;
+            } else {
                 j--;
             }
-            if (j < 0) break;
-            count = (count + j + 1) % 1000000007;
-            i++;
         }
         return count;
     }
