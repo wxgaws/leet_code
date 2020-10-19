@@ -15,7 +15,7 @@ class LCP18 {
             int sN = sList.get(i)[1];
             int dLeft = x - sCost;
             if (dLeft < 0) break;//越往后钱越不够
-            while (dLeft < dList.get(j)[0]) {
+            while (j >= 0 && dLeft < dList.get(j)[0]) {
                 j--;
             }
             if (j >= 0) {
@@ -50,7 +50,7 @@ class LCP18 {
             }
 
         }
-        System.out.println("sort:");
+        // System.out.println("sort:");
         // for(Integer[] a:list){
         //     System.out.println(a[0]+","+a[1]);
         // }
