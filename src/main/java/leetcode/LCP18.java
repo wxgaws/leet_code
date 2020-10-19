@@ -4,7 +4,7 @@ import java.util.*;
 
 class LCP18 {
     public int breakfastNumber(int[] staple, int[] drinks, int x) {
-        int count = 0;
+        long count = 0L;
         List<Integer[]> sList = sort(staple, x, false);
         List<Integer[]> dList = sort(drinks, x, true);
 
@@ -22,11 +22,11 @@ class LCP18 {
                 int dN = dList.get(j)[1];
                 count += sN * dN;
             }
-            // System.out.printf("sCost=%d, sCost=%d, count=%d\n",sCost,dList.get(j)[0], count );
+            //    if(i%1000==0) System.out.printf("sCost=%d, sCost=%d, count=%d\n",sCost,dList.get(j)[0], count );
         }
 
         count = count % 1000000007;
-        return count;
+        return (int) count;
     }
 
     //返回升序List(price,n)，价格不超过price的商品选法数
@@ -51,8 +51,8 @@ class LCP18 {
 
         }
         // System.out.println("sort:");
-        // for(Integer[] a:list){
-        //     System.out.println(a[0]+","+a[1]);
+        // for(int i=0;i<5;i++){
+        //     System.out.println(list.get(i)[0]+","+list.get(i)[1]);
         // }
         return list;
     }
