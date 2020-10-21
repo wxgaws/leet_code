@@ -13,7 +13,7 @@ class LRUCache {
 
     public int get(int key) {
         if (map.containsKey(key)) {
-            List<Integer> obj = new ArrayList<>() {
+            List<Integer> obj = new ArrayList<Integer>() {
                 {
                     add(key);
                     add(map.get(key));
@@ -31,14 +31,14 @@ class LRUCache {
         // System.out.println("before: "+map);
         //  System.out.println(key+","+value);
         //加入头结点
-        List<Integer> obj = new ArrayList<>() {
+        List<Integer> obj = new ArrayList<Integer>() {
             {
                 add(key);
                 add(map.getOrDefault(key, -1));
             }
         };
         list.remove(obj);
-        obj = new ArrayList<>() {
+        obj = new ArrayList<Integer>() {
             {
                 add(key);
                 add(value);
