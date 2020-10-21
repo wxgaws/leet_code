@@ -48,7 +48,6 @@ class LRUCache2 {
             Node cur = map.get(key);
             cur.v = value;
             toHead(cur);
-            map.put(key, cur);
 
         } else {//no
             //full
