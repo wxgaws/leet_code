@@ -3,58 +3,40 @@ package main.java.leetcode;
 import java.util.*;
 
 class LRUCache {
-    int capacity;//capacity
-    HashMap<Integer, Integer> map = new HashMap<>();//map
-    LinkedList<List<Integer>> list = new LinkedList<>();//linedlist
+    //map+linkedlist
+    int capacity;
+    Map<Integer, Integer> map;//map(key, value)
+    LinkedList<Integer> list;//linkedlist(key)
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
+        this.map = new HashMap<>();
+        this.list = new LinkedList<>();
     }
 
     public int get(int key) {
-        if (map.containsKey(key)) {
-            List<Integer> obj = new ArrayList<Integer>() {
-                {
-                    add(key);
-                    add(map.get(key));
-                }
-            };
-            list.remove(obj);
-            list.addFirst(obj);
-            // System.out.println(key+",last="+list.getLast().get(0)+", first="+list.getFirst().get(0)+", map="+map);
+        //to head
+        if (list.contains(key)) {
+            list.remove((Integer) key);
+            list.addFirst(key);
         }
-        // System.out.println(key+", get, list" + list+", map="+map);
-        return this.map.getOrDefault(key, -1);
+        return map.getOrDefault(key, -1);
     }
 
     public void put(int key, int value) {
-        // System.out.println("before: "+map);
-        //  System.out.println(key+","+value);
-        //加入头结点
-        List<Integer> obj = new ArrayList<Integer>() {
-            {
-                add(key);
-                add(map.getOrDefault(key, -1));
-            }
-        };
-        list.remove(obj);
-        obj = new ArrayList<Integer>() {
-            {
-                add(key);
-                add(value);
-            }
-        };
-        list.addFirst(obj);
+        //add head
+        if (list.contains(key)) {
+            list.remove((Integer) key);
+        }
+        list.addFirst(key);
         map.put(key, value);
 
-
-        //已满时，删除尾节点
-        if (map.size() > this.capacity) {
-            map.remove(list.removeLast().get(0));
+        //full, remove tail
+        if (list.size() > capacity) {
+            int keyLast = list.removeLast();
+            map.remove(keyLast);
         }
 
-        // System.out.println("after: "+map);
-        // System.out.println(key+","+value+", put, list="+list+", map="+map);
     }
 }
 
