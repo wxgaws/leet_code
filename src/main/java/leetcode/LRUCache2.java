@@ -20,7 +20,7 @@ class LRUCache2 {
         }
     }
 
-    public LRUCache(int capacity) {
+    public LRUCache2(int capacity) {
         this.capacity = capacity;
         this.head = new Node(0, 0);
         this.tail = new Node(0, 0);
