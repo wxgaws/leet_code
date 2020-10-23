@@ -17,7 +17,7 @@ class LC15 {
             }
 
             for (int bi = ai + 1, ci = nums.length - 1; bi < ci; ) {
-                //不同于上次
+                //不同于上次, 所以bi > ai + 1，而不是bi>0
                 if (bi > ai + 1 && nums[bi] == nums[bi - 1]) {
                     bi++;
                     continue;
