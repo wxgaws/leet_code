@@ -8,16 +8,20 @@ import java.util.*;
 class LC15 {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
+
         Arrays.sort(nums);
-        System.out.println(Arrays.toString(nums));
-        for (int ai = 0; ai < nums.length; ai++) {
+        // System.out.println(Arrays.toString(nums));
+        for (int ai = 0; ai < nums.length - 2; ai++) {
+            if (nums[ai] > 0) break;
+
             //不同于上次
             if (ai > 0 && nums[ai] == nums[ai - 1]) {
                 continue;
             }
 
-            for (int bi = ai + 1, ci = nums.length - 1; bi < ci; ) {
-                //不同于上次, 所以bi > ai + 1，而不是bi>0
+            int bi = ai + 1, ci = nums.length - 1;
+            while (bi < ci) {
+                //不同于上次
                 if (bi > ai + 1 && nums[bi] == nums[bi - 1]) {
                     bi++;
                     continue;
@@ -25,12 +29,9 @@ class LC15 {
 
                 int sum = nums[ai] + nums[bi] + nums[ci];
                 if (sum == 0) {
-                    List<Integer> list = new ArrayList<>();
-                    list.add(nums[ai]);
-                    list.add(nums[bi]);
-                    list.add(nums[ci]);
-                    res.add(list);
+                    res.add(new ArrayList<>(Arrays.asList(nums[ai], nums[bi], nums[ci])));
                     bi++;
+                    ci--;
                     // System.out.println("list="+list);
                 } else if (sum > 0) {
                     ci--;
@@ -43,7 +44,5 @@ class LC15 {
         return res;
     }
 }
-
-
 
 
