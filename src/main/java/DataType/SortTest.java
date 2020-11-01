@@ -94,15 +94,17 @@ public class SortTest {
     }
 
     /**
-     * 将矩阵分割为两部分，前一半均小于分界点，后一般均大于等于分界点，返回分界点
+     * 将数组分割为两部分，前一半均小于分界点，后一般均大于等于分界点。
+     * 返回分界点
      */
     public int _QuickSortPartition(int[] arr, int left, int right) {
-        int ibase = left;
         int base = arr[left];
-        int i = left + 1, j = right;
+        int i = left, j = right;
         while (i < j) {
-            if (arr[j] >= base && i < j) j--;
-            if (arr[i] <= base && i < j) i++;
+            while (arr[j] >= base && i < j) j--;
+            while (arr[i] <= base && i < j) i++;
+
+            //swap(i,j)
             if (i < j) {
                 int tmp = arr[i];
                 arr[i] = arr[j];
@@ -110,9 +112,9 @@ public class SortTest {
             }
         }
 
-        int tmp = arr[ibase];
-        arr[ibase] = arr[i];
-        arr[i] = tmp;
+        //swap(left,i)
+        arr[left] = arr[i];
+        arr[i] = base;
 
         return i;
     }
@@ -131,9 +133,9 @@ public class SortTest {
         System.out.println(Arrays.toString(a2));
 
         int[] a3 = {49, 38, 65, 97, 76, 13, 27, 50};
-        QuickSort(a3, 0, a.length - 1);
+        QuickSort(a3, 0, a3.length - 1);
         System.out.println("QuickSort：");
-        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(a3));
 
     }
 
