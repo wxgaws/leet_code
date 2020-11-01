@@ -81,8 +81,45 @@ public class SortTest {
         }
     }
 
+
+    /**
+     * 快速排序，双指针
+     */
+    public void QuickSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = _QuickSortPartition(arr, left, right);
+            QuickSort(arr, left, mid - 1);
+            QuickSort(arr, mid + 1, right);
+        }
+    }
+
+    /**
+     * 将矩阵分割为两部分，前一半均小于分界点，后一般均大于等于分界点，返回分界点
+     */
+    public int _QuickSortPartition(int[] arr, int left, int right) {
+        int ibase = left;
+        int base = arr[left];
+        int i = left + 1, j = right;
+        while (i < j) {
+            if (arr[j] >= base && i < j) j--;
+            if (arr[i] <= base && i < j) i++;
+            if (i < j) {
+                int tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            }
+        }
+
+        int tmp = arr[ibase];
+        arr[ibase] = arr[i];
+        arr[i] = tmp;
+
+        return i;
+    }
+
+
     @Test
-    public void testMergeSort() {
+    public void testSort() {
         int[] a = {49, 38, 65, 97, 76, 13, 27, 50};
         MergeSort(a, 0, a.length - 1);
         System.out.println("MergeSort：");
@@ -93,7 +130,13 @@ public class SortTest {
         System.out.println("MergeSort2：");
         System.out.println(Arrays.toString(a2));
 
+        int[] a3 = {49, 38, 65, 97, 76, 13, 27, 50};
+        QuickSort(a3, 0, a.length - 1);
+        System.out.println("QuickSort：");
+        System.out.println(Arrays.toString(a));
+
     }
+
 
     public static void main(String[] args) {
         System.out.println("SortTest");
