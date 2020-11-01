@@ -67,7 +67,7 @@ class LC148 {
         return dummy.next;
     }
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next;
 
