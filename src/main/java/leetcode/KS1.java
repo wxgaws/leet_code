@@ -62,11 +62,14 @@ public class KS1 {
 
     public static void main(String[] args) {
         int[] arr = {3, 1, 7, 4};
-        int sum = 5;
-        int[] sign = new int[arr.length];
-        boolean flag = sumEq(arr, sum, sign);
-        System.out.println("arr=" + Arrays.toString(arr) + ", sum=" + sum);
-        System.out.println(flag);
-        System.out.println("sign=" + Arrays.toString(sign));
+        for (int sum = 1; sum < 20; sum++) {
+            int[] sign = new int[arr.length];
+            boolean flag = sumEq(arr, sum, sign);
+            System.out.println("arr=" + Arrays.toString(arr) + ", sum=" + sum);
+            System.out.println(flag);
+            System.out.println("sign=" + Arrays.toString(sign));
+            System.out.println();
+        }
+
     }
 }
