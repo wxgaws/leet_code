@@ -2,6 +2,9 @@ package main.java.leetcode;
 
 import java.util.*;
 
+/**
+ * 动态规划解法
+ */
 public class KS1 {
     /**
      * 判断arr元素正负号求和后是否可为sum，并返回各元素正负号
