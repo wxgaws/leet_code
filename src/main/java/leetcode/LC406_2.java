@@ -1,8 +1,8 @@
-package main.java.leetcode;
+package leetcode;
 
 import java.util.*;
 
-class L406_2 {
+class LC406_2 {
     public int[][] reconstructQueue(int[][] people) {
         //用lambda表达式排序
         Arrays.sort(people, (a1, a2) -> {

@@ -1,4 +1,4 @@
-package main.java.leetcode;
+package leetcode;
 
 /**
  * 5. 最长回文子串

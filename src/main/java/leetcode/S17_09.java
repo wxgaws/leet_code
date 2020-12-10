@@ -1,4 +1,4 @@
-package main.java.leetcode;
+package leetcode;
 
 public class S17_09 {
     class Solution {

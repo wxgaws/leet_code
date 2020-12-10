@@ -1,4 +1,4 @@
-package main.java.leetcode;
+package leetcode;
 
 import java.util.*;
 
@@ -59,6 +59,7 @@ public class Ms2 {
     public static void main(String[] args) {
 //        System.out.println(pk(3));
 //        System.out.println(cnk(5, 2));
+        //3辆车5个人，每个车最多坐3人，求方法数。车1坐ab和ab算一种。
         System.out.println(methodN(3, 5, 3));
         System.out.println(methodN(2, 3, 2));
         System.out.println(methodN(2, 2, 1));

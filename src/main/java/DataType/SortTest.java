@@ -1,4 +1,4 @@
-package main.java.DataType;
+package DataType;
 
 import org.junit.Test;
 
