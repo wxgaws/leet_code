@@ -132,39 +132,24 @@ public class TreeTest {
                 stack.push(p);
 //                //debug
 //                System.out.println("stack=" + stackToString(stack) + ", " + p.val + ", p_out=" + ((p.left != null) ? p.left.val : "^"));
-                pre = p;
+//                pre = p;//若注释，不影响结果
                 p = p.left;
             } else {
                 p = stack.peek();
                 if (p.left == null && p.right != pre) System.out.printf("^");//从左子树过来的
 
-
                 //右子树非空，且没有访问过
                 if (p.right != null && p.right != pre) {
-                    pre = p;
+                    pre = p;//若注释，无法正确输出^
                     p = p.right;
                 } else {
                     if (p.right == null) System.out.printf("#");
                     System.out.printf(p.val);
-                    pre = p;
+                    pre = p;//若注释，无限循环
                     stack.pop();
-                    if (stack.isEmpty()) break;
                     p = null;
 
                 }
-
-
-//                if (p.right == null || p.right == pre) {
-//                    System.out.printf(p.val);
-//                    pre = p;
-//                    stack.pop();
-//                    if (stack.isEmpty()) break;
-//                    p = null;
-//                } else {
-//                    pre = p;
-//                    p = p.right;
-//                }
-
 
             }
 
@@ -200,12 +185,10 @@ public class TreeTest {
 
         TreeTest tree = new TreeTest();
         ListNode<String> root = tree.create();
-//        tree.preOrderTraverse(root);
-//        tree.preOrderTraverseReverse(root);
-//        tree.inOrderTraverse(root);
-//        tree.inOrderTraverseReverse(root);
-//        tree.postOrderTraverse(root);
-
+        tree.preOrderTraverse(root);
+        tree.preOrderTraverseReverse(root);
+        tree.inOrderTraverse(root);
+        tree.inOrderTraverseReverse(root);
         tree.postOrderTraverseReverse(root);
         tree.postOrderTraverse(root);
 
