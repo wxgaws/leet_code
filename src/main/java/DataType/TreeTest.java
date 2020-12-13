@@ -132,10 +132,12 @@ public class TreeTest {
                 stack.push(p);
 //                //debug
 //                System.out.println("stack=" + stackToString(stack) + ", " + p.val + ", p_out=" + ((p.left != null) ? p.left.val : "^"));
+                pre = p;
                 p = p.left;
             } else {
-                System.out.printf("^");
                 p = stack.peek();
+                if (p.left == null && p.right != pre) System.out.printf("^");//从左子树过来的
+
 
                 //右子树非空，且没有访问过
                 if (p.right != null && p.right != pre) {
@@ -148,6 +150,7 @@ public class TreeTest {
                     stack.pop();
                     if (stack.isEmpty()) break;
                     p = null;
+
                 }
 
 
@@ -172,23 +175,23 @@ public class TreeTest {
         }
 
         //没有本句，无法输出空树、最后一个空右结点
-        System.out.printf("^\n");
+        System.out.printf("\n");
     }
 
     public void postOrderTraverseReverse(ListNode<String> root) {
         System.out.println("后根遍历-递归");
-        _postOrderTraverseReverse(root);
+        _postOrderTraverseReverse(root, "^");
         System.out.printf("\n");
 
     }
 
-    public void _postOrderTraverseReverse(ListNode<String> root) {
+    public void _postOrderTraverseReverse(ListNode<String> root, String tag) {
         if (root == null) {
-            System.out.printf("^");
+            System.out.printf(tag);
             return;
         }
-        _postOrderTraverseReverse(root.left);
-        _postOrderTraverseReverse(root.right);
+        _postOrderTraverseReverse(root.left, "^");
+        _postOrderTraverseReverse(root.right, "#");
         System.out.printf(root.val);
     }
 
