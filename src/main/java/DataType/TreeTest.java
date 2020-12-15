@@ -180,6 +180,7 @@ public class TreeTest {
         System.out.printf(root.val);
     }
 
+    //使用null标记遍历过的元素，第2次遍历该元素时就该输出了
     public void preOrderTraverse2(ListNode<String> root) {
         Stack<ListNode<String>> stack = new Stack<>();
         stack.push(root);
@@ -201,7 +202,7 @@ public class TreeTest {
 
     }
 
-
+    //使用null标记遍历过的元素，第2次遍历该元素时就该输出了
     public void inOrderTraverse2(ListNode<String> root) {
         Stack<ListNode<String>> stack = new Stack<>();
         stack.push(root);
@@ -223,7 +224,7 @@ public class TreeTest {
 
     }
 
-
+    //使用null标记遍历过的元素，第2次遍历该元素时就该输出了
     public void postOrderTraverse2(ListNode<String> root) {
         Stack<ListNode<String>> stack = new Stack<>();
         stack.push(root);
@@ -245,18 +246,102 @@ public class TreeTest {
 
     }
 
+    //自定义标识符替代null，标识符表示元素遍历过，null表示空结点，可以正确输出空结点
+    public void preOrderTraverse3(ListNode<String> root) {
+        System.out.println("前根遍历-非递归");
+        Stack<ListNode<String>> stack = new Stack<>();
+        stack.push(root);
+        ListNode<String> cur;
+        ListNode<String> flag = new ListNode<>("0");//标识符
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (cur == null) {
+                System.out.printf("^");
+            } else if (cur == flag) {
+                cur = stack.pop();
+                System.out.printf(cur.val);
+            } else {
+                stack.push(cur.right);//右
+                stack.push(cur.left);//左
+                stack.push(cur);//中
+                stack.push(flag);
+            }
+
+        }
+
+        System.out.printf("\n");
+
+    }
+
+    //自定义标识符替代null，标识符表示元素遍历过，null表示空结点，可以正确输出空结点
+    public void inOrderTraverse3(ListNode<String> root) {
+        System.out.println("中根遍历-非递归");
+        Stack<ListNode<String>> stack = new Stack<>();
+        stack.push(root);
+        ListNode<String> cur;
+        ListNode<String> flag = new ListNode<>("0");//标识符
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (cur == null) {
+                System.out.printf("^");
+            } else if (cur == flag) {
+                cur = stack.pop();
+                System.out.printf(cur.val);
+            } else {
+                stack.push(cur.right);//右
+                stack.push(cur);//中
+                stack.push(flag);
+                stack.push(cur.left);//左
+            }
+
+        }
+
+        System.out.printf("\n");
+
+    }
+
+    //自定义标识符替代null，标识符表示元素遍历过，null表示空结点，可以正确输出空结点
+    public void postOrderTraverse3(ListNode<String> root) {
+        System.out.println("后根遍历-非递归");
+        Stack<ListNode<String>> stack = new Stack<>();
+        stack.push(root);
+        ListNode<String> cur;
+        ListNode<String> flag = new ListNode<>("0");//标识符
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (cur == null) {
+                System.out.printf("^");
+            } else if (cur == flag) {
+                cur = stack.pop();
+                System.out.printf(cur.val);
+            } else {
+                stack.push(cur);//中
+                stack.push(flag);
+                stack.push(cur.right);//右
+                stack.push(cur.left);//左
+            }
+
+        }
+
+        System.out.printf("\n");
+
+    }
+
 
     public static void main(String[] args) {
         TreeTest tree = new TreeTest();
         ListNode<String> root = tree.create();
-//        tree.preOrderTraverse(root);
+        tree.preOrderTraverse(root);
 //        tree.preOrderTraverse2(root);
-//        tree.preOrderTraverseReverse(root);
-//        tree.inOrderTraverse(root);
+        tree.preOrderTraverse3(root);
+        tree.preOrderTraverseReverse(root);
+        tree.inOrderTraverse(root);
 //        tree.inOrderTraverse2(root);
-//        tree.inOrderTraverseReverse(root);
+        tree.inOrderTraverse3(root);
+        tree.inOrderTraverseReverse(root);
         tree.postOrderTraverse(root);
-        tree.postOrderTraverse2(root);
+//        tree.postOrderTraverse2(root);
+        tree.postOrderTraverse3(root);
         tree.postOrderTraverseReverse(root);
 
 
