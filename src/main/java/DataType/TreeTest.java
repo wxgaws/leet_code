@@ -180,17 +180,85 @@ public class TreeTest {
         System.out.printf(root.val);
     }
 
+    public void preOrderTraverse2(ListNode<String> root) {
+        Stack<ListNode<String>> stack = new Stack<>();
+        stack.push(root);
+        ListNode<String> cur;
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (cur != null) {
+                if (cur.right != null) stack.push(cur.right);//右
+                if (cur.left != null) stack.push(cur.left);//左
+                stack.push(cur);//中
+                stack.push(null);
+            } else {
+                cur = stack.pop();
+                System.out.printf(cur.val);
+            }
+        }
+
+        System.out.printf("\n");
+
+    }
+
+
+    public void inOrderTraverse2(ListNode<String> root) {
+        Stack<ListNode<String>> stack = new Stack<>();
+        stack.push(root);
+        ListNode<String> cur;
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (cur != null) {
+                if (cur.right != null) stack.push(cur.right);//右
+                stack.push(cur);//中
+                stack.push(null);
+                if (cur.left != null) stack.push(cur.left);//左
+            } else {
+                cur = stack.pop();
+                System.out.printf(cur.val);
+            }
+        }
+
+        System.out.printf("\n");
+
+    }
+
+
+    public void postOrderTraverse2(ListNode<String> root) {
+        Stack<ListNode<String>> stack = new Stack<>();
+        stack.push(root);
+        ListNode<String> cur;
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (cur != null) {
+                stack.push(cur);//中
+                stack.push(null);
+                if (cur.right != null) stack.push(cur.right);//右
+                if (cur.left != null) stack.push(cur.left);//左
+            } else {
+                cur = stack.pop();
+                System.out.printf(cur.val);
+            }
+        }
+
+        System.out.printf("\n");
+
+    }
+
 
     public static void main(String[] args) {
-
         TreeTest tree = new TreeTest();
         ListNode<String> root = tree.create();
-        tree.preOrderTraverse(root);
-        tree.preOrderTraverseReverse(root);
-        tree.inOrderTraverse(root);
-        tree.inOrderTraverseReverse(root);
-        tree.postOrderTraverseReverse(root);
+//        tree.preOrderTraverse(root);
+//        tree.preOrderTraverse2(root);
+//        tree.preOrderTraverseReverse(root);
+//        tree.inOrderTraverse(root);
+//        tree.inOrderTraverse2(root);
+//        tree.inOrderTraverseReverse(root);
         tree.postOrderTraverse(root);
+        tree.postOrderTraverse2(root);
+        tree.postOrderTraverseReverse(root);
+
 
         ListNode<String> root2 = null;
 //        tree.preOrderTraverse(root2);
