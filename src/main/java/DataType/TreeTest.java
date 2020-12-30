@@ -39,15 +39,11 @@ public class TreeTest {
             if (p != null) {
                 System.out.printf(p.val);
                 stack.push(p);
-//                //debug
-//                System.out.println("stack=" + stackToString(stack) + ", " + p.val + ", p_out=" + ((p.left != null) ? p.left.val : "^"));
                 p = p.left;
             } else {
                 System.out.printf("^");
                 p = stack.pop();
                 p = p.right;
-//                //debug
-//                System.out.println("stack=" + stackToString(stack) + ", ^" + ", p_out=" + ((p != null) ? p.val : "^"));
             }
         }
 
@@ -88,16 +84,12 @@ public class TreeTest {
         while (p != null || !stack.isEmpty()) {
             if (p != null) {
                 stack.push(p);
-//                //debug
-//                System.out.println("stack=" + stackToString(stack) + ", " + p.val + ", p_out=" + ((p.left != null) ? p.left.val : "^"));
                 p = p.left;
             } else {
                 System.out.printf("^");
                 p = stack.pop();
                 System.out.printf(p.val);
                 p = p.right;
-//                //debug
-//                System.out.println("stack=" + stackToString(stack) + ", ^" + ", p_out=" + ((p != null) ? p.val : "^"));
             }
         }
 
@@ -130,8 +122,6 @@ public class TreeTest {
         while (p != null || !stack.isEmpty()) {
             if (p != null) {
                 stack.push(p);
-//                //debug
-//                System.out.println("stack=" + stackToString(stack) + ", " + p.val + ", p_out=" + ((p.left != null) ? p.left.val : "^"));
 //                pre = p;//若注释，不影响结果
                 p = p.left;
             } else {
@@ -142,7 +132,7 @@ public class TreeTest {
                 if (p.right != null && p.right != pre) {
                     pre = p;//若注释，无法正确输出^
                     p = p.right;
-                } else {
+                } else {//左右子树都遍历完了，输出当前结点
                     if (p.right == null) System.out.printf("#");
                     System.out.printf(p.val);
                     pre = p;//若注释，无限循环
@@ -152,10 +142,6 @@ public class TreeTest {
                 }
 
             }
-
-
-            //debug
-//            System.out.println("stack=" + stackToString(stack) + ", ^" + ", p_out=" + ((p != null) ? p.val : "^") + ", pre_out=" + ((pre != null) ? pre.val : "^"));
 
         }
 
