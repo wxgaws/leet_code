@@ -1,5 +1,7 @@
 package DataType;
 
+import org.junit.Test;
+
 import java.util.*;
 
 public class PriorityQueueTest {
@@ -27,6 +29,19 @@ public class PriorityQueueTest {
         que.add(1);
         que.add(2);
         System.out.println(que.peek());
+    }
+
+    @Test
+    public void test4() {
+        PriorityQueue<Integer> que = new PriorityQueue<>((a1, a2) -> {
+            return a2 - a1;
+        });
+        que.offer(3);
+        que.offer(1);
+        que.offer(2);
+        System.out.println(que);
+        System.out.println("peek, " + que.peek() + ", " + que);
+        System.out.println("poll, " + que.poll() + ", " + que);
     }
 
     public static void main(String[] args) {
